@@ -73,7 +73,7 @@ if __name__ == "__main__":
                 feed_dict = { x_placeholder: x_0, y_placeholder: y }
 
                 # 3. Sample t from uniform(1,...,T)
-                #
+                t = tf.random_uniform([10], 0, num_timesteps, dtype=tf.int32)
 
                 # 4. Sample epsilon from standard diagonal gaussian N(0, I)
                 #    Compute epsilon_theta(( (sqrt(alpha_bar[t]) * x_0) + (sqrt(1-alpha_bar[t]) * epsilon), t) ))

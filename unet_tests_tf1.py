@@ -18,15 +18,16 @@ import diffusion_tf.models.unet as unet
 
 if __name__ == "__main__":
 
-
     # Create a tensorflow 1.x session
-    sess = tf.Session()
+    with tf.Session() as sess:
 
-    # Set debbuging mode for session
+    # Set debbuging mode for tfdbg cli session
     sess = tf_debug.LocalCLIDebugWrapperSession(sess)
     
     # Set filter for has inf or nan
     sess.add_tensor_filter("has_inf_or_nan", tf_debug.has_inf_or_nan)    # Set the number of timesteps between x_0 and x_0 in the latent space
+
+    # Set the number of time steps used in the forward diffusion
     numTimesteps = 1000
 
     # Create a batch of ten (10) images 32x32 pixels each having 3 channels (R, G, B)
